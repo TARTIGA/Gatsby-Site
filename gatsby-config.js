@@ -6,7 +6,7 @@
 
 module.exports = {
   siteMetadata: {
-    title: `Pandas Eating Lots`,
+    title: `IP Project`,
   },
   plugins: [
     {
@@ -14,6 +14,15 @@ module.exports = {
       options: {
         name: `src`,
         path: `${__dirname}/src/`,
+      },
+    },
+    {
+      resolve: "gatsby-plugin-material-ui",
+      // If you want to use styled components you should change the injection order.
+      options: {
+        // stylesProvider: {
+        //   injectFirst: true,
+        // },
       },
     },
     `gatsby-transformer-remark`,
