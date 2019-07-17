@@ -96,7 +96,7 @@ const useStyles = makeStyles(theme => ({
   },
   menuItem: {
     justifyContent: "center",
-    fontSize: 12,
+    fontSize: 14,
   },
   menuPersonal: {
     justifyContent: "right",
