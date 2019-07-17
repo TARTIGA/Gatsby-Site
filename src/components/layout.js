@@ -98,6 +98,10 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "center",
     fontSize: 12,
   },
+  menuPersonal: {
+    justifyContent: "right",
+    fontSize: 12,
+  },
 }))
 
 export default ({ title, children }) => {
@@ -138,7 +142,7 @@ export default ({ title, children }) => {
                 </Typography>
               </Grid>
               <Hidden smDown>
-                <Grid item xs={9}>
+                <Grid item xs={6}>
                   <List className={classes.menuListContainer}>
                     {["Создать документы", "О сервисе", "Контакты", "FAQ"].map(
                       (text, idx) => (
@@ -150,7 +154,11 @@ export default ({ title, children }) => {
                   </List>
                 </Grid>
               </Hidden>
+              <Grid item xs={3} className={classes.menuPersonal}>
+                <div>Личный кабинет</div>
+              </Grid>
             </Grid>
+
             <Hidden mdUp>
               <IconButton
                 color="inherit"
