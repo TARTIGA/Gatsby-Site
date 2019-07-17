@@ -1,29 +1,16 @@
 import React from "react"
 // import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
-import {
-  AppBar,
-  Toolbar,
-  IconButton,
-  MenuIcon,
-  Typography,
-  Button,
-} from "@material-ui/core"
 import { Helmet } from "react-helmet" // for title desc in short SEO
 
 export default ({ data }) => {
   return (
-    <Layout>
+    <Layout headerTitle="хуй">
       <Helmet>
         <meta charSet="utf-8" />
         <title>IP PROJECT DOC</title>
       </Helmet>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6">News</Typography>
-          <Button color="inherit">Login</Button>
-        </Toolbar>
-      </AppBar>
+      <div>222222222</div>
     </Layout>
   )
 }
