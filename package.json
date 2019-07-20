@@ -17,6 +17,7 @@
     "@material-ui/icons": "^4.2.1",
     "@material-ui/styles": "^4.2.0",
     "gatsby": "^2.13.13",
+    "gatsby-plugin-google-fonts": "^1.0.1",
     "gatsby-plugin-manifest": "^2.2.3",
     "gatsby-plugin-material-ui": "^2.1.4",
     "gatsby-plugin-offline": "^2.2.3",
@@ -29,6 +30,7 @@
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
     "react-typography": "^0.16.19",
+    "typeface-roboto": "0.0.75",
     "typography": "^0.16.19",
     "typography-theme-fairy-gates": "^0.16.19"
   },
