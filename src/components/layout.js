@@ -15,11 +15,11 @@ import PermIdentity from "@material-ui/icons/PermIdentity"
 import Hidden from "@material-ui/core/Hidden"
 import Container from "@material-ui/core/Container"
 import Grid from "@material-ui/core/Grid"
-import Box from "@material-ui/core/Box"
+
 import { Link } from "gatsby"
-import mainMenu from "../factory/mainMenu"
+import mainMenu from "../factories/mainMenu"
+
 import { ThemeProvider } from "@material-ui/styles"
-import Button from "@material-ui/core/Button"
 // import logo from "../images/icon.png"
 const drawerWidth = 240
 const headerHeight = 100
@@ -221,75 +221,7 @@ export default ({ title, children }) => {
           [classes.contentShift]: open,
         })}
       >
-        <Box className={classes.mainBanner}>
-          <div className={classes.drawerHeader} />
-          <Container maxWidth="lg">
-            <Typography variant="h3" noWrap color="secondary">
-              B-helper.ru
-            </Typography>
-            <Typography variant="h5" noWrap color="secondary">
-              Личный кабинет с возможностью сохранить реквизиты
-            </Typography>
-            <Typography variant="h5" noWrap color="secondary">
-              Документы можно отправить сразу на электронную почту
-            </Typography>
-            <Typography variant="h5" noWrap color="secondary">
-              Создавай документы бесплатно
-            </Typography>
-            <Button variant="contained" color="primary">
-              Primary
-            </Button>
-            <Button variant="contained" color="primary">
-              Primary
-            </Button>
-            <Typography noWrap color="secondary">
-              Приложение на смартфон
-            </Typography>
-            <Button variant="contained" color="primary">
-              Primary
-            </Button>
-          </Container>
-        </Box>
-        <Box className={classes.about}>
-          <Container maxWidth="lg">
-            <Typography variant="h3" noWrap color="primary">
-              О сервисе
-            </Typography>
-            <Typography variant="p" align="left" color="primary">
-              Господа, высокотехнологичная концепция общественного уклада, в
-              своем классическом представлении, допускает внедрение
-              распределения внутренних резервов и ресурсов. Кстати, стремящиеся
-              вытеснить традиционное производство, нанотехнологии и по сей день
-              остаются уделом либералов, которые жаждут быть указаны как
-              претенденты на роль ключевых факторов. Банальные, но
-              неопровержимые выводы, а также активно развивающиеся страны
-              третьего мира функционально разнесены на независимые элементы.
-              Разнообразный и богатый опыт говорит нам, что выбранный нами
-              инновационный путь способствует повышению качества вывода текущих
-              активов. Кстати, элементы политического процесса будут призваны к
-              ответу! Принимая во внимание показатели успешности, глубокий
-              уровень погружения требует анализа приоритизации разума над
-              эмоциями. И нет сомнений, что явные признаки победы
-              институциализации освещают чрезвычайно интересные особенности
-              картины в целом, однако конкретные выводы, разумеется, в равной
-              степени предоставлены сами себе.
-            </Typography>
-          </Container>
-        </Box>
-        <Box className={classes.documents}>
-          <Container maxWidth="lg">
-            <Typography variant="h3" noWrap color="primary">
-              Какой документ необходимо создать?
-            </Typography>
-            <Box flexWrap="wrap" display="flex">
-              <Box className={classes.documentBlock}>1111</Box>
-              <Box className={classes.documentBlock}>1111</Box>
-              <Box className={classes.documentBlock}>1111</Box>
-              <Box className={classes.documentBlock}>1111</Box>
-              <Box className={classes.documentBlock}>1111</Box>
-            </Box>
-          </Container>
-        </Box>
+        {children}
       </main>
       <Drawer
         className={classes.drawer}
