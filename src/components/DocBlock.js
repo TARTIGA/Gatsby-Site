@@ -8,7 +8,6 @@ const useStyles = makeStyles(theme => ({
     color: "#fff",
     display: "flex",
     fontSize: 36,
-    width: 250,
     height: 184,
     background: "rgba(1, 124, 186, 0.75)",
     border: "0.5px solid #7BDAFF",

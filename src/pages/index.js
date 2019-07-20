@@ -9,6 +9,7 @@ import Typography from "@material-ui/core/Typography"
 import { makeStyles, useTheme } from "@material-ui/core/styles"
 import DocBlock from "../components/DocBlock"
 import docTypes from "../factories/docTypes"
+import Grid from "@material-ui/core/Grid"
 const drawerWidth = 240
 const headerHeight = 100
 
@@ -28,19 +29,6 @@ const useStyles = makeStyles(theme => ({
   documents: {
     background: "#fff",
     height: 780,
-  },
-  documentBlock: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    fontSize: 36,
-    width: 250,
-    height: 184,
-    background: "rgba(1, 124, 186, 0.75)",
-    border: "0.5px solid #7BDAFF",
-    boxSizing: "border-box",
-    boxShadow: "0px 4px 4px rgba(0, 146, 199, 0.7)",
-    borderRadius: "10px",
   },
 }))
 export default ({ data }) => {
@@ -111,11 +99,13 @@ export default ({ data }) => {
           <Typography variant="h3" noWrap color="primary">
             Какой документ необходимо создать?
           </Typography>
-          <Box flexWrap="wrap" display="flex">
+          <Grid container direction="row" alignItems="center" spacing={2}>
             {docTypes.map((item, idx) => (
-              <DocBlock key={idx} title={item.title} link={item.link} />
+              <Grid key={idx} item xs={6} sm={3}>
+                <DocBlock title={item.title} link={item.link} />
+              </Grid>
             ))}
-          </Box>
+          </Grid>
         </Container>
       </Box>
     </Layout>
