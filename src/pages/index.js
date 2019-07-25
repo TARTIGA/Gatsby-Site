@@ -67,13 +67,14 @@ const useStyles = makeStyles(theme => ({
   mainPageTitle: {
     fontSize: "2em",
     fontWeight: 500,
-    lineHeight: "5em",
+    paddingTop: "2em",
+    marginBottom: "2em",
   },
 
   mainPageTextAbout: {
     fontSize: "0.9em",
     fontWeight: 300,
-    lineHeight: "1em",
+    lineHeight: "1.5em",
   },
 }))
 export default ({ data }) => {
@@ -85,11 +86,16 @@ export default ({ data }) => {
         <title>IP PROJECT DOC</title>
       </Helmet>
 
-      <Box className={[classes.mainBlocks, classes.mainBanner]}>
+      <Box className={`${classes.mainBlocks}, ${classes.mainBanner}`}>
         <div className={classes.drawerHeader} />
         <Container maxWidth="lg">
-          <Grid container justify="space-between" alignContent="center">
-            <Grid item md={8} sm={12} xs={12} spacing={2}>
+          <Grid
+            container
+            justify="space-between"
+            alignContent="center"
+            spacing={2}
+          >
+            <Grid item md={8} sm={12} xs={12}>
               <Typography variant="h1" className={classes.bannerTitle}>
                 Создание документов онлайн без скачивания программ!
               </Typography>
@@ -133,25 +139,23 @@ export default ({ data }) => {
               </Box>
             </Grid>
             <Hidden mdDown>
-              <Grid container md={4} justify="center" alignItems="center">
-                <img src={print} alt="Докумнты" />
+              <Grid item md={4}>
+                <Box justify="center" alignItems="center">
+                  <img src={print} alt="Докумнты" />
+                </Box>
               </Grid>
             </Hidden>
           </Grid>
         </Container>
       </Box>
-      <Box className={[classes.mainBlocks, classes.about]}>
+      <Box className={`${classes.mainBlocks} ${classes.about}`}>
         <Container maxWidth="lg">
           <Typography variant="h3" className={classes.mainPageTitle}>
             О сервисе
           </Typography>
           <Grid container justify="space-between" alignItems="center">
             <Grid item md={6} sm={12} xs={12}>
-              <Typography
-                variant="p"
-                align="left"
-                className={classes.mainPageTextAbout}
-              >
+              <Typography align="left" className={classes.mainPageTextAbout}>
                 Господа, высокотехнологичная концепция общественного уклада, в
                 своем классическом представлении, допускает внедрение
                 распределения внутренних резервов и ресурсов. Кстати,
@@ -165,11 +169,7 @@ export default ({ data }) => {
                 текущих активов.
               </Typography>
               <p></p>
-              <Typography
-                variant="p"
-                align="left"
-                className={classes.mainPageTextAbout}
-              >
+              <Typography align="left" className={classes.mainPageTextAbout}>
                 Кстати, элементы политического процесса будут призваны к ответу!
                 Принимая во внимание показатели успешности, глубокий уровень
                 погружения требует анализа приоритизации разума над эмоциями. И
@@ -187,14 +187,14 @@ export default ({ data }) => {
           </Grid>
         </Container>
       </Box>
-      <Box className={[classes.mainBlocks, classes.documents]}>
+      <Box className={`${classes.mainBlocks}, ${classes.documents}`}>
         <Container maxWidth="lg">
           <Typography variant="h2" className={classes.mainPageTitle}>
             Какой документ необходимо создать?
           </Typography>
           <Grid container direction="row" alignItems="center" spacing={10}>
             {docTypes.map((item, idx) => (
-              <Grid key={idx} item xs={6} sm={3}>
+              <Grid key={idx} item xs={12} sm={6} md={3}>
                 <DocBlock title={item.title} link={item.link} />
               </Grid>
             ))}

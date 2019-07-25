@@ -1,8 +1,8 @@
-import React from "react"
+import React, { useState } from "react"
 import clsx from "clsx"
 import { makeStyles, useTheme } from "@material-ui/core/styles"
 import {
-  Drawer,
+  SwipeableDrawer,
   AppBar,
   Toolbar,
   CssBaseline,
@@ -13,10 +13,10 @@ import {
   Container,
   Grid,
   Icon,
+  Box,
 } from "@material-ui/core"
 import { Link } from "gatsby"
 import mainMenu from "../factories/mainMenu"
-import { ThemeProvider } from "@material-ui/styles"
 // import logo from "../images/icon.png"
 const drawerWidth = 240
 const headerHeight = 100
@@ -101,7 +101,7 @@ const useStyles = makeStyles(theme => ({
   },
   menuItem: {
     justifyContent: "center",
-    fontSize: 14,
+    fontSize: "0.8em",
     lineHeight: "30px",
     color: "#0071BC",
     textDecoration: "none",
@@ -110,7 +110,7 @@ const useStyles = makeStyles(theme => ({
   menuPersonal: {
     display: "flex",
     justifyContent: "flex-end",
-    fontSize: 14,
+    fontSize: "0.8em",
   },
   menuPersonalLink: {
     color: "#0071BC",
@@ -153,14 +153,10 @@ const useStyles = makeStyles(theme => ({
 export default ({ title, children }) => {
   const classes = useStyles()
   const theme = useTheme()
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = useState(false)
 
-  const handleDrawerOpen = () => {
-    setOpen(true)
-  }
-
-  const handleDrawerClose = () => {
-    setOpen(false)
+  const toggleDrawer = () => {
+    setOpen(!open)
   }
 
   return (
@@ -174,8 +170,12 @@ export default ({ title, children }) => {
       >
         <Toolbar>
           <Container maxWidth="lg">
-            <Grid container className={classes.menuContainer}>
-              <Grid item xs={3}>
+            <Grid
+              container
+              className={classes.menuContainer}
+              justify="space-between"
+            >
+              <Grid item xs={6} sm={6} md={3}>
                 <Link className={classes.titleLink} to="/">
                   <Typography variant="h6" noWrap className={classes.title}>
                     B-helper.ru
@@ -186,7 +186,7 @@ export default ({ title, children }) => {
                 </Link>
               </Grid>
               <Hidden smDown>
-                <Grid item xs={6}>
+                <Grid item xs={6} md={6}>
                   <List className={classes.menuListContainer}>
                     {mainMenu.map((item, idx) => (
                       <Link
@@ -200,34 +200,33 @@ export default ({ title, children }) => {
                   </List>
                 </Grid>
 
-                <Grid
-                  item
-                  xs={3}
-                  className={classes.menuPersonal}
-                  justify="center"
-                  alignItems="center"
-                >
-                  <Link className={classes.menuPersonalLink}>
-                    <Icon className={classes.menuPersonalIcon}>
-                      person_outline
-                    </Icon>
-                    <span>Личный кабинет</span>
-                  </Link>
+                <Grid item md={3} className={classes.menuPersonal}>
+                  <Box justify="center" alignItems="center">
+                    <Link className={classes.menuPersonalLink} to="/">
+                      <Icon className={classes.menuPersonalIcon}>
+                        person_outline
+                      </Icon>
+                      <span>Личный кабинет</span>
+                    </Link>
+                  </Box>
+                </Grid>
+              </Hidden>
+              <Hidden mdUp>
+                <Grid item xs={2} sm={6}>
+                  <Box width="100%" display="flex" justifyContent="flex-end">
+                    <IconButton
+                      color="inherit"
+                      aria-label="Open drawer"
+                      edge="end"
+                      onClick={toggleDrawer}
+                      className={clsx(open && classes.hide)}
+                    >
+                      <Icon>menu</Icon>
+                    </IconButton>
+                  </Box>
                 </Grid>
               </Hidden>
             </Grid>
-
-            <Hidden mdUp>
-              <IconButton
-                color="inherit"
-                aria-label="Open drawer"
-                edge="end"
-                onClick={handleDrawerOpen}
-                className={clsx(open && classes.hide)}
-              >
-                <Icon>menu</Icon>
-              </IconButton>
-            </Hidden>
           </Container>
         </Toolbar>
       </AppBar>
@@ -238,7 +237,9 @@ export default ({ title, children }) => {
       >
         {children}
       </main>
-      <Drawer
+      <SwipeableDrawer
+        onOpen={toggleDrawer}
+        onClose={toggleDrawer}
         className={classes.drawer}
         variant="persistent"
         anchor="right"
@@ -248,11 +249,13 @@ export default ({ title, children }) => {
         }}
       >
         <div className={classes.drawerHeader}>
-          {theme.direction === "rtl" ? (
-            <Icon>chevron_left</Icon>
-          ) : (
-            <Icon>chevron_right</Icon>
-          )}
+          <IconButton onClick={toggleDrawer}>
+            {theme.direction === "rtl" ? (
+              <Icon>chevron_left</Icon>
+            ) : (
+              <Icon>chevron_right</Icon>
+            )}
+          </IconButton>
         </div>
         <List>
           {mainMenu.map((item, idx) => (
@@ -261,7 +264,7 @@ export default ({ title, children }) => {
             </Link>
           ))}
         </List>
-      </Drawer>
+      </SwipeableDrawer>
     </div>
   )
 }
