@@ -3,13 +3,19 @@ import React from "react"
 import Layout from "../components/layout"
 import { Helmet } from "react-helmet" // for title desc in short SEO
 import Box from "@material-ui/core/Box"
-import Button from "@material-ui/core/Button"
+import Fab from "@material-ui/core/Fab"
 import Container from "@material-ui/core/Container"
 import Typography from "@material-ui/core/Typography"
-import { makeStyles, useTheme } from "@material-ui/core/styles"
+import { makeStyles } from "@material-ui/core/styles"
 import DocBlock from "../components/DocBlock"
 import docTypes from "../factories/docTypes"
 import Grid from "@material-ui/core/Grid"
+import Hidden from "@material-ui/core/Hidden"
+import Icon from "@material-ui/core/Icon"
+
+import docs from "../images/docs.png"
+import print from "../images/print.png"
+import googleplay from "../images/googleplay.png"
 const drawerWidth = 240
 const headerHeight = 100
 
@@ -17,89 +23,176 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
   },
-
+  mainBlocks: {
+    paddingBottom: "5em",
+  },
   mainBanner: {
+    paddingTop: "4em",
     background: "linear-gradient(90deg, #0071BC 7.68%, #088FE9 92%)",
-    height: 920,
+    paddingBottom: "4em",
   },
   about: {
     background: "rgba(245, 245, 245, 0.65);",
-    height: 693,
   },
   documents: {
     background: "#fff",
-    height: 780,
+  },
+  bannerTitle: {
+    fontSize: "2.3em",
+    color: "#fff",
+    fontWeight: 700,
+    lineHeight: "1.5em",
+  },
+  bannerList: {
+    paddingTop: "3.2em",
+  },
+  bannerListText: {
+    color: "#fff",
+    fontSize: "1.1em",
+    fontWeight: 500,
+    lineHeight: "2em",
+  },
+  bannerlistIcon: {
+    color: "#fff",
+    marginRight: "1.2em",
+  },
+  bannerButton: {
+    background: "#fff",
+    color: "#173D7A",
+    fontSize: "0.8em",
+    fontWeight: 700,
+    marginRight: "1em",
+    height: "4em",
+  },
+  mainPageTitle: {
+    fontSize: "2em",
+    fontWeight: 500,
+    lineHeight: "5em",
+  },
+
+  mainPageTextAbout: {
+    fontSize: "0.9em",
+    fontWeight: 300,
+    lineHeight: "1em",
   },
 }))
 export default ({ data }) => {
   const classes = useStyles()
-  const theme = useTheme()
   return (
     <Layout headerTitle="хуй">
       <Helmet>
         <meta charSet="utf-8" />
         <title>IP PROJECT DOC</title>
       </Helmet>
-      <Box className={classes.mainBanner}>
+
+      <Box className={[classes.mainBlocks, classes.mainBanner]}>
         <div className={classes.drawerHeader} />
         <Container maxWidth="lg">
-          <Typography variant="h3" noWrap color="secondary">
-            B-helper.ru
-          </Typography>
-          <Typography variant="h5" noWrap color="secondary">
-            Личный кабинет с возможностью сохранить реквизиты
-          </Typography>
-          <Typography variant="h5" noWrap color="secondary">
-            Документы можно отправить сразу на электронную почту
-          </Typography>
-          <Typography variant="h5" noWrap color="secondary">
-            Создавай документы бесплатно
-          </Typography>
-          <Button variant="contained" color="primary">
-            Primary
-          </Button>
-          <Button variant="contained" color="primary">
-            Primary
-          </Button>
-          <Typography noWrap color="secondary">
-            Приложение на смартфон
-          </Typography>
-          <Button variant="contained" color="primary">
-            Primary
-          </Button>
+          <Grid container justify="space-between" alignContent="center">
+            <Grid item md={8} sm={12} xs={12} spacing={2}>
+              <Typography variant="h1" className={classes.bannerTitle}>
+                Создание документов онлайн без скачивания программ!
+              </Typography>
+              <Box className={classes.bannerList}>
+                <Box display="flex" alignItems="center">
+                  <Icon className={classes.bannerlistIcon}>done</Icon>
+                  <Typography variant="h3" className={classes.bannerListText}>
+                    Личный кабинет с возможностью сохранить реквизиты
+                  </Typography>
+                </Box>
+                <Box display="flex" alignItems="center">
+                  <Icon className={classes.bannerlistIcon}>done</Icon>
+                  <Typography variant="h3" className={classes.bannerListText}>
+                    Документы можно отправить сразу на электронную почту
+                  </Typography>
+                </Box>
+                <Box display="flex" alignItems="center">
+                  <Icon className={classes.bannerlistIcon}>done</Icon>
+                  <Typography variant="h3" className={classes.bannerListText}>
+                    Создавай документы бесплатно
+                  </Typography>
+                </Box>
+                <Box display="flex" justifyItems="start" mt={12}>
+                  <Fab
+                    aria-label="create"
+                    variant="extended"
+                    size="large"
+                    className={classes.bannerButton}
+                  >
+                    Создать документы
+                  </Fab>
+                  <Fab
+                    aria-label="registration"
+                    variant="extended"
+                    size="large"
+                    className={classes.bannerButton}
+                  >
+                    ЗАРЕГИСТРИРОВАТЬСЯ
+                  </Fab>
+                </Box>
+              </Box>
+            </Grid>
+            <Hidden mdDown>
+              <Grid container md={4} justify="center" alignItems="center">
+                <img src={print} alt="Докумнты" />
+              </Grid>
+            </Hidden>
+          </Grid>
         </Container>
       </Box>
-      <Box className={classes.about}>
+      <Box className={[classes.mainBlocks, classes.about]}>
         <Container maxWidth="lg">
-          <Typography variant="h3" noWrap color="primary">
+          <Typography variant="h3" className={classes.mainPageTitle}>
             О сервисе
           </Typography>
-          <Typography variant="p" align="left" color="primary">
-            Господа, высокотехнологичная концепция общественного уклада, в своем
-            классическом представлении, допускает внедрение распределения
-            внутренних резервов и ресурсов. Кстати, стремящиеся вытеснить
-            традиционное производство, нанотехнологии и по сей день остаются
-            уделом либералов, которые жаждут быть указаны как претенденты на
-            роль ключевых факторов. Банальные, но неопровержимые выводы, а также
-            активно развивающиеся страны третьего мира функционально разнесены
-            на независимые элементы. Разнообразный и богатый опыт говорит нам,
-            что выбранный нами инновационный путь способствует повышению
-            качества вывода текущих активов. Кстати, элементы политического
-            процесса будут призваны к ответу! Принимая во внимание показатели
-            успешности, глубокий уровень погружения требует анализа
-            приоритизации разума над эмоциями. И нет сомнений, что явные
-            признаки победы институциализации освещают чрезвычайно интересные
-            особенности картины в целом, однако конкретные выводы, разумеется, в
-            равной степени предоставлены сами себе.
-          </Typography>
+          <Grid container justify="space-between" alignItems="center">
+            <Grid item md={6} sm={12} xs={12}>
+              <Typography
+                variant="p"
+                align="left"
+                className={classes.mainPageTextAbout}
+              >
+                Господа, высокотехнологичная концепция общественного уклада, в
+                своем классическом представлении, допускает внедрение
+                распределения внутренних резервов и ресурсов. Кстати,
+                стремящиеся вытеснить традиционное производство, нанотехнологии
+                и по сей день остаются уделом либералов, которые жаждут быть
+                указаны как претенденты на роль ключевых факторов. Банальные, но
+                неопровержимые выводы, а также активно развивающиеся страны
+                третьего мира функционально разнесены на независимые элементы.
+                Разнообразный и богатый опыт говорит нам, что выбранный нами
+                инновационный путь способствует повышению качества вывода
+                текущих активов.
+              </Typography>
+              <p></p>
+              <Typography
+                variant="p"
+                align="left"
+                className={classes.mainPageTextAbout}
+              >
+                Кстати, элементы политического процесса будут призваны к ответу!
+                Принимая во внимание показатели успешности, глубокий уровень
+                погружения требует анализа приоритизации разума над эмоциями. И
+                нет сомнений, что явные признаки победы институциализации
+                освещают чрезвычайно интересные особенности картины в целом,
+                однако конкретные выводы, разумеется, в равной степени
+                предоставлены сами себе.
+              </Typography>
+            </Grid>
+            <Hidden mdDown>
+              <Grid item md={4}>
+                <img src={docs} alt="Докумнты" />
+              </Grid>
+            </Hidden>
+          </Grid>
         </Container>
       </Box>
-      <Box className={classes.documents}>
+      <Box className={[classes.mainBlocks, classes.documents]}>
         <Container maxWidth="lg">
-          <Typography variant="h3" noWrap color="primary">
+          <Typography variant="h2" className={classes.mainPageTitle}>
             Какой документ необходимо создать?
           </Typography>
-          <Grid container direction="row" alignItems="center" spacing={2}>
+          <Grid container direction="row" alignItems="center" spacing={10}>
             {docTypes.map((item, idx) => (
               <Grid key={idx} item xs={6} sm={3}>
                 <DocBlock title={item.title} link={item.link} />

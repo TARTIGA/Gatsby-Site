@@ -1,24 +1,21 @@
 import React from "react"
 import clsx from "clsx"
 import { makeStyles, useTheme } from "@material-ui/core/styles"
-import Drawer from "@material-ui/core/Drawer"
-import AppBar from "@material-ui/core/AppBar"
-import Toolbar from "@material-ui/core/Toolbar"
-import CssBaseline from "@material-ui/core/CssBaseline"
-import List from "@material-ui/core/List"
-import Typography from "@material-ui/core/Typography"
-import IconButton from "@material-ui/core/IconButton"
-import MenuIcon from "@material-ui/icons/Menu"
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft"
-import ChevronRightIcon from "@material-ui/icons/ChevronRight"
-import PermIdentity from "@material-ui/icons/PermIdentity"
-import Hidden from "@material-ui/core/Hidden"
-import Container from "@material-ui/core/Container"
-import Grid from "@material-ui/core/Grid"
-
+import {
+  Drawer,
+  AppBar,
+  Toolbar,
+  CssBaseline,
+  List,
+  Typography,
+  IconButton,
+  Hidden,
+  Container,
+  Grid,
+  Icon,
+} from "@material-ui/core"
 import { Link } from "gatsby"
 import mainMenu from "../factories/mainMenu"
-
 import { ThemeProvider } from "@material-ui/styles"
 // import logo from "../images/icon.png"
 const drawerWidth = 240
@@ -56,8 +53,9 @@ const useStyles = makeStyles(theme => ({
     background: "none",
   },
   subTitle: {
-    fontSize: 10,
+    fontSize: "0.6em",
     fontWeight: 700,
+    color: "#000",
   },
   hide: {
     display: "none",
@@ -113,6 +111,17 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     justifyContent: "flex-end",
     fontSize: 14,
+  },
+  menuPersonalLink: {
+    color: "#0071BC",
+    textDecoration: "none",
+    backgroundImage: "none",
+    display: "flex",
+    alignItems: "center",
+  },
+  menuPersonalIcon: {
+    marginRight: "0.7em",
+    fontSize: "1.4em",
   },
   mainBanner: {
     background: "linear-gradient(90deg, #0071BC 7.68%, #088FE9 92%)",
@@ -171,11 +180,7 @@ export default ({ title, children }) => {
                   <Typography variant="h6" noWrap className={classes.title}>
                     B-helper.ru
                   </Typography>
-                  <Typography
-                    variant="subtitle2"
-                    noWrap
-                    className={classes.subTitle}
-                  >
+                  <Typography noWrap className={classes.subTitle}>
                     Помощник современного предпринимателя
                   </Typography>
                 </Link>
@@ -195,9 +200,19 @@ export default ({ title, children }) => {
                   </List>
                 </Grid>
 
-                <Grid item xs={3} className={classes.menuPersonal}>
-                  <PermIdentity />
-                  <span>Личный кабинет</span>
+                <Grid
+                  item
+                  xs={3}
+                  className={classes.menuPersonal}
+                  justify="center"
+                  alignItems="center"
+                >
+                  <Link className={classes.menuPersonalLink}>
+                    <Icon className={classes.menuPersonalIcon}>
+                      person_outline
+                    </Icon>
+                    <span>Личный кабинет</span>
+                  </Link>
                 </Grid>
               </Hidden>
             </Grid>
@@ -210,7 +225,7 @@ export default ({ title, children }) => {
                 onClick={handleDrawerOpen}
                 className={clsx(open && classes.hide)}
               >
-                <MenuIcon />
+                <Icon>menu</Icon>
               </IconButton>
             </Hidden>
           </Container>
@@ -233,13 +248,11 @@ export default ({ title, children }) => {
         }}
       >
         <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "rtl" ? (
-              <ChevronLeftIcon />
-            ) : (
-              <ChevronRightIcon />
-            )}
-          </IconButton>
+          {theme.direction === "rtl" ? (
+            <Icon>chevron_left</Icon>
+          ) : (
+            <Icon>chevron_right</Icon>
+          )}
         </div>
         <List>
           {mainMenu.map((item, idx) => (
