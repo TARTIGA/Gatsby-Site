@@ -1,6 +1,6 @@
 import React from "react"
 import Box from "@material-ui/core/Box"
-import { makeStyles, useTheme } from "@material-ui/core/styles"
+import { makeStyles } from "@material-ui/core/styles"
 import Typography from "@material-ui/core/Typography"
 import Icon from "@material-ui/core/Icon"
 import { Link } from "gatsby"
@@ -9,7 +9,6 @@ const useStyles = makeStyles(theme => ({
   documentBlock: {
     color: "#fff",
     display: "flex",
-    fontSize: 36,
     height: 184,
     background: "#017CBA",
     border: "0.5px solid #7BDAFF",

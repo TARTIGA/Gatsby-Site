@@ -16,9 +16,9 @@ import DocBlock from "../components/DocBlock"
 import docTypes from "../factories/docTypes"
 import docs from "../images/docs.png"
 import print from "../images/print.png"
-import googleplay from "../images/googleplay.png"
-const drawerWidth = 240
-const headerHeight = 100
+// import googleplay from "../images/googleplay.png"
+// const drawerWidth = 240
+// const headerHeight = 100
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -79,9 +79,6 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const AdapterLink = React.forwardRef((props, ref) => (
-  <Link innerRef={ref} {...props} />
-))
 export default ({ data }) => {
   const classes = useStyles()
   return (
