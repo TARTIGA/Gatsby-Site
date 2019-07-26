@@ -72,13 +72,6 @@ const useStyles = makeStyles(theme => ({
     paddingTop: headerHeight,
     overflow: "hidden",
   },
-  contentShift: {
-    transition: theme.transitions.create("margin", {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginRight: 0,
-  },
   menuContainer: {
     alignItems: "center",
   },
@@ -138,7 +131,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-export default ({ title, children }) => {
+export default ({ title, children, fullContainer }) => {
   const classes = useStyles()
   const theme = useTheme()
   const [open, setOpen] = useState(false)
@@ -187,7 +180,10 @@ export default ({ title, children }) => {
 
                 <Grid item md={3} className={classes.menuPersonal}>
                   <Box justify="center" alignItems="center">
-                    <Link className={classes.menuPersonalLink} to="/">
+                    <Link
+                      className={classes.menuPersonalLink}
+                      to="/registration"
+                    >
                       <Icon className={classes.menuPersonalIcon}>
                         person_outline
                       </Icon>
@@ -220,7 +216,7 @@ export default ({ title, children }) => {
           [classes.contentShift]: open,
         })}
       >
-        {children}
+        {fullContainer ? children : <Container>{children}</Container>}
       </main>
       <SwipeableDrawer
         swipeAreaWidth={30}

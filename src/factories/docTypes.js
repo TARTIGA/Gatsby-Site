@@ -1,8 +1,8 @@
 export default [
-  { title: "Счет на оплату", link: "/create" },
-  { title: "Счёт-фактурa", link: "/about" },
-  { title: "Накладная", link: "/contacts" },
-  { title: "Акт выполненных работ", link: "/faq" },
-  { title: "УПД", link: "/faq" },
-  { title: "Доверенность", link: "/faq" },
+  { title: "Счет на оплату", link: "/bill" },
+  { title: "Счёт-фактурa", link: "/invoice" },
+  { title: "Накладная", link: "/waybill" },
+  { title: "Акт выполненных работ", link: "/act" },
+  { title: "УПД", link: "/upd" },
+  { title: "Доверенность", link: "/proxy" },
 ]

@@ -10,6 +10,7 @@ import {
   Hidden,
   Icon,
 } from "@material-ui/core"
+import { Link } from "gatsby"
 import { makeStyles } from "@material-ui/core/styles"
 import DocBlock from "../components/DocBlock"
 import docTypes from "../factories/docTypes"
@@ -77,10 +78,14 @@ const useStyles = makeStyles(theme => ({
     lineHeight: "1.5em",
   },
 }))
+
+const AdapterLink = React.forwardRef((props, ref) => (
+  <Link innerRef={ref} {...props} />
+))
 export default ({ data }) => {
   const classes = useStyles()
   return (
-    <Layout headerTitle="хуй">
+    <Layout headerTitle="хуй" fullContainer="true">
       <Box className={`${classes.mainBlocks}, ${classes.mainBanner}`}>
         <div className={classes.drawerHeader} />
         <Container maxWidth="lg">
@@ -114,22 +119,26 @@ export default ({ data }) => {
                   </Typography>
                 </Box>
                 <Box display="flex" justifyItems="start" mt={12}>
-                  <Fab
-                    aria-label="create"
-                    variant="extended"
-                    size="large"
-                    className={classes.bannerButton}
-                  >
-                    Создать документы
-                  </Fab>
-                  <Fab
-                    aria-label="registration"
-                    variant="extended"
-                    size="large"
-                    className={classes.bannerButton}
-                  >
-                    ЗАРЕГИСТРИРОВАТЬСЯ
-                  </Fab>
+                  <Link to="/create">
+                    <Fab
+                      aria-label="create"
+                      variant="extended"
+                      size="large"
+                      className={classes.bannerButton}
+                    >
+                      Создать документы
+                    </Fab>
+                  </Link>
+                  <Link to="/registration">
+                    <Fab
+                      aria-label="registration"
+                      variant="extended"
+                      size="large"
+                      className={classes.bannerButton}
+                    >
+                      ЗАРЕГИСТРИРОВАТЬСЯ
+                    </Fab>
+                  </Link>
                 </Box>
               </Box>
             </Grid>
