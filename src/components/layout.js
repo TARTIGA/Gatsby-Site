@@ -63,7 +63,7 @@ const useStyles = makeStyles(theme => ({
   drawerHeader: {
     display: "flex",
     alignItems: "center",
-    padding: "0 8px",
+    padding: "0 16px",
     ...theme.mixins.toolbar,
     justifyContent: "flex-start",
   },
@@ -104,6 +104,9 @@ const useStyles = makeStyles(theme => ({
   menuPersonalIcon: {
     marginRight: "0.7em",
     fontSize: "1.4em",
+  },
+  menuPersonalIcondrawer: {
+    fontSize: "2em",
   },
   menuIcon: {
     fontSize: "48px",
@@ -180,10 +183,7 @@ export default ({ title, children, fullContainer }) => {
 
                 <Grid item md={3} className={classes.menuPersonal}>
                   <Box justify="center" alignItems="center">
-                    <Link
-                      className={classes.menuPersonalLink}
-                      to="/registration"
-                    >
+                    <Link className={classes.menuPersonalLink} to="/user">
                       <Icon className={classes.menuPersonalIcon}>
                         person_outline
                       </Icon>
@@ -235,7 +235,7 @@ export default ({ title, children, fullContainer }) => {
           <Box
             width="100%"
             display="flex"
-            justifyContent="center"
+            justifyContent="space-between"
             alignItems="center"
           >
             <Link className={classes.titleLink} to="/">
@@ -243,6 +243,13 @@ export default ({ title, children, fullContainer }) => {
                 B-helper.ru
               </Typography>
             </Link>
+            <Box justify="center" alignItems="center">
+              <Link className={classes.menuPersonalLink} to="/user">
+                <Icon className={classes.menuPersonalIcondrawer}>
+                  person_outline
+                </Icon>
+              </Link>
+            </Box>
           </Box>
         </div>
         <Divider />
@@ -253,21 +260,19 @@ export default ({ title, children, fullContainer }) => {
           className={classes.menuDrawerContainer}
         >
           {mainMenu.map((item, idx) => (
-            <ListItem
-              key={idx}
-              role="listitem"
-              button
-              className={classes.menuDrawerBtn}
-            >
-              <ListItemIcon className={classes.menuDrawerIcon}>
-                <Icon>{item.icon}</Icon>
-              </ListItemIcon>
-              <ListItemText>
-                <Link className={classes.menuDrawerLink} to={item.link}>
-                  {item.title}
-                </Link>
-              </ListItemText>
-            </ListItem>
+            <Link className={classes.menuDrawerLink} to={item.link}>
+              <ListItem
+                key={idx}
+                role="listitem"
+                button
+                className={classes.menuDrawerBtn}
+              >
+                <ListItemIcon className={classes.menuDrawerIcon}>
+                  <Icon>{item.icon}</Icon>
+                </ListItemIcon>
+                <ListItemText>{item.title}</ListItemText>
+              </ListItem>
+            </Link>
           ))}
         </List>
         <Box className={classes.backBtnDrawer}>
