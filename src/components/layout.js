@@ -22,7 +22,7 @@ import {
 import { Link } from "gatsby"
 import mainMenu from "../factories/mainMenu"
 // import logo from "../images/icon.png"
-const drawerWidth = "50%"
+const drawerWidth = "70%"
 const headerHeight = 100
 const useStyles = makeStyles(theme => ({
   root: {
@@ -70,10 +70,7 @@ const useStyles = makeStyles(theme => ({
   content: {
     flexGrow: 1,
     paddingTop: headerHeight,
-    transition: theme.transitions.create("margin", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
+    overflow: "hidden",
   },
   contentShift: {
     transition: theme.transitions.create("margin", {
@@ -130,6 +127,15 @@ const useStyles = makeStyles(theme => ({
     textShadow: "none",
     backgroundImage: "none",
   },
+  backBtnDrawer: {
+    position: "absolute",
+    top: "auto",
+    bottom: "0",
+    display: "flex",
+    justifyContent: "center",
+    width: "100%",
+    borderTop: "1px solid rgba(0, 0, 0, 0.12)",
+  },
 }))
 
 export default ({ title, children }) => {
@@ -154,7 +160,7 @@ export default ({ title, children }) => {
               className={classes.menuContainer}
               justify="space-between"
             >
-              <Grid item xs={6} sm={6} md={3}>
+              <Grid item xs={8} sm={6} md={3}>
                 <Link className={classes.titleLink} to="/">
                   <Typography variant="h6" noWrap className={classes.title}>
                     B-helper.ru
@@ -233,16 +239,9 @@ export default ({ title, children }) => {
           <Box
             width="100%"
             display="flex"
-            justifyContent="left"
+            justifyContent="center"
             alignItems="center"
           >
-            <IconButton onClick={toggleDrawer}>
-              {theme.direction === "rtl" ? (
-                <Icon>chevron_left</Icon>
-              ) : (
-                <Icon>chevron_right</Icon>
-              )}
-            </IconButton>
             <Link className={classes.titleLink} to="/">
               <Typography variant="h6" noWrap className={classes.title}>
                 B-helper.ru
@@ -275,6 +274,15 @@ export default ({ title, children }) => {
             </ListItem>
           ))}
         </List>
+        <Box className={classes.backBtnDrawer}>
+          <IconButton onClick={toggleDrawer}>
+            {theme.direction === "rtl" ? (
+              <Icon>chevron_left</Icon>
+            ) : (
+              <Icon>chevron_right</Icon>
+            )}
+          </IconButton>
+        </Box>
       </SwipeableDrawer>
     </div>
   )

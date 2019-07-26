@@ -1,18 +1,18 @@
 import React from "react"
 // import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
-import { Helmet } from "react-helmet" // for title desc in short SEO
-import Box from "@material-ui/core/Box"
-import Fab from "@material-ui/core/Fab"
-import Container from "@material-ui/core/Container"
-import Typography from "@material-ui/core/Typography"
+import {
+  Box,
+  Fab,
+  Container,
+  Typography,
+  Grid,
+  Hidden,
+  Icon,
+} from "@material-ui/core"
 import { makeStyles } from "@material-ui/core/styles"
 import DocBlock from "../components/DocBlock"
 import docTypes from "../factories/docTypes"
-import Grid from "@material-ui/core/Grid"
-import Hidden from "@material-ui/core/Hidden"
-import Icon from "@material-ui/core/Icon"
-
 import docs from "../images/docs.png"
 import print from "../images/print.png"
 import googleplay from "../images/googleplay.png"
@@ -81,11 +81,6 @@ export default ({ data }) => {
   const classes = useStyles()
   return (
     <Layout headerTitle="хуй">
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>IP PROJECT DOC</title>
-      </Helmet>
-
       <Box className={`${classes.mainBlocks}, ${classes.mainBanner}`}>
         <div className={classes.drawerHeader} />
         <Container maxWidth="lg">
@@ -192,7 +187,7 @@ export default ({ data }) => {
           <Typography variant="h2" className={classes.mainPageTitle}>
             Какой документ необходимо создать?
           </Typography>
-          <Grid container direction="row" alignItems="center" spacing={10}>
+          <Grid container direction="row" alignItems="center" spacing={3}>
             {docTypes.map((item, idx) => (
               <Grid key={idx} item xs={12} sm={6} md={3}>
                 <DocBlock title={item.title} link={item.link} />
