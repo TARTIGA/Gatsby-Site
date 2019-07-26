@@ -27,6 +27,7 @@ const headerHeight = 100
 const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
+    paddingBottom: "3em",
   },
   appBar: {
     top: 0,
