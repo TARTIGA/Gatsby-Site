@@ -7,40 +7,33 @@ import {
   Toolbar,
   CssBaseline,
   List,
+  ListItem,
+  ListItemText,
+  ListItemIcon,
   Typography,
   IconButton,
   Hidden,
   Container,
   Grid,
   Icon,
+  Divider,
   Box,
 } from "@material-ui/core"
 import { Link } from "gatsby"
 import mainMenu from "../factories/mainMenu"
 // import logo from "../images/icon.png"
-const drawerWidth = 240
+const drawerWidth = "50%"
 const headerHeight = 100
 const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
   },
   appBar: {
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
+    top: 0,
     background: "#fafafa",
     color: "#0071BC",
     height: headerHeight,
     justifyContent: "center",
-  },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginRight: drawerWidth,
   },
   title: {
     color: "#0071BC",
@@ -81,7 +74,6 @@ const useStyles = makeStyles(theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    marginRight: -drawerWidth,
   },
   contentShift: {
     transition: theme.transitions.create("margin", {
@@ -123,30 +115,20 @@ const useStyles = makeStyles(theme => ({
     marginRight: "0.7em",
     fontSize: "1.4em",
   },
-  mainBanner: {
-    background: "linear-gradient(90deg, #0071BC 7.68%, #088FE9 92%)",
-    height: 920,
+  menuIcon: {
+    fontSize: "48px",
   },
-  about: {
-    background: "rgba(245, 245, 245, 0.65);",
-    height: 693,
+  menuDrawerContainer: {},
+  menuDrawerBtn: {
+    minHeight: "48px",
   },
-  documents: {
-    background: "#fff",
-    height: 780,
+  menuDrawerIcon: {
+    color: "#0071BC",
   },
-  documentBlock: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    fontSize: 36,
-    width: 250,
-    height: 184,
-    background: "rgba(1, 124, 186, 0.75)",
-    border: "0.5px solid #7BDAFF",
-    boxSizing: "border-box",
-    boxShadow: "0px 4px 4px rgba(0, 146, 199, 0.7)",
-    borderRadius: "10px",
+  menuDrawerLink: {
+    color: "#0071BC",
+    textShadow: "none",
+    backgroundImage: "none",
   },
 }))
 
@@ -159,17 +141,14 @@ export default ({ title, children }) => {
     setOpen(!open)
   }
 
+  const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent)
+
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      >
+      <AppBar className={classes.appBar}>
         <Toolbar>
-          <Container maxWidth="lg">
+          <Container>
             <Grid
               container
               className={classes.menuContainer}
@@ -221,7 +200,7 @@ export default ({ title, children }) => {
                       onClick={toggleDrawer}
                       className={clsx(open && classes.hide)}
                     >
-                      <Icon>menu</Icon>
+                      <Icon className={classes.menuIcon}>menu</Icon>
                     </IconButton>
                   </Box>
                 </Grid>
@@ -238,30 +217,50 @@ export default ({ title, children }) => {
         {children}
       </main>
       <SwipeableDrawer
-        onOpen={toggleDrawer}
-        onClose={toggleDrawer}
-        className={classes.drawer}
-        variant="persistent"
+        swipeAreaWidth={30}
+        disableBackdropTransition={!iOS}
+        disableDiscovery={iOS}
         anchor="right"
         open={open}
+        onClose={toggleDrawer}
+        onOpen={toggleDrawer}
+        className={classes.drawer}
         classes={{
           paper: classes.drawerPaper,
         }}
       >
         <div className={classes.drawerHeader}>
-          <IconButton onClick={toggleDrawer}>
-            {theme.direction === "rtl" ? (
-              <Icon>chevron_left</Icon>
-            ) : (
-              <Icon>chevron_right</Icon>
-            )}
-          </IconButton>
-        </div>
-        <List>
-          {mainMenu.map((item, idx) => (
-            <Link key={idx} className={classes.menuItem} to={item.link}>
-              {item.title}
+          <Box width="100%" display="flex" justifyContent="center">
+            <Link className={classes.titleLink} to="/">
+              <Typography variant="h6" noWrap className={classes.title}>
+                B-helper.ru
+              </Typography>
             </Link>
+          </Box>
+        </div>
+        <Divider />
+        <List
+          dense
+          component="div"
+          role="list"
+          className={classes.menuDrawerContainer}
+        >
+          {mainMenu.map((item, idx) => (
+            <ListItem
+              key={idx}
+              role="listitem"
+              button
+              className={classes.menuDrawerBtn}
+            >
+              <ListItemIcon className={classes.menuDrawerIcon}>
+                <Icon>{item.icon}</Icon>
+              </ListItemIcon>
+              <ListItemText>
+                <Link className={classes.menuDrawerLink} to={item.link}>
+                  {item.title}
+                </Link>
+              </ListItemText>
+            </ListItem>
           ))}
         </List>
       </SwipeableDrawer>
