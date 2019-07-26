@@ -39,8 +39,9 @@ const useStyles = makeStyles(theme => ({
     fontSize: "1.6em",
   },
 }))
-export default ({ title, link }) => {
+export default ({ item }) => {
   const classes = useStyles()
+  const { title, link } = item
   return (
     <Link className={classes.blocLink} to={link}>
       <Box

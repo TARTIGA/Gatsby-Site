@@ -261,9 +261,8 @@ export default ({ title, children, fullContainer }) => {
           className={classes.menuDrawerContainer}
         >
           {mainMenu.map((item, idx) => (
-            <Link className={classes.menuDrawerLink} to={item.link}>
+            <Link key={idx} className={classes.menuDrawerLink} to={item.link}>
               <ListItem
-                key={idx}
                 role="listitem"
                 button
                 className={classes.menuDrawerBtn}

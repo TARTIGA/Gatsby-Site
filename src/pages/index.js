@@ -199,7 +199,7 @@ export default ({ data }) => {
           <Grid container direction="row" alignItems="center" spacing={3}>
             {docTypes.map((item, idx) => (
               <Grid key={idx} item xs={12} sm={6} md={3}>
-                <DocBlock title={item.title} link={item.link} />
+                <DocBlock item={item} />
               </Grid>
             ))}
           </Grid>
