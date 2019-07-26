@@ -230,7 +230,19 @@ export default ({ title, children }) => {
         }}
       >
         <div className={classes.drawerHeader}>
-          <Box width="100%" display="flex" justifyContent="center">
+          <Box
+            width="100%"
+            display="flex"
+            justifyContent="left"
+            alignItems="center"
+          >
+            <IconButton onClick={toggleDrawer}>
+              {theme.direction === "rtl" ? (
+                <Icon>chevron_left</Icon>
+              ) : (
+                <Icon>chevron_right</Icon>
+              )}
+            </IconButton>
             <Link className={classes.titleLink} to="/">
               <Typography variant="h6" noWrap className={classes.title}>
                 B-helper.ru
